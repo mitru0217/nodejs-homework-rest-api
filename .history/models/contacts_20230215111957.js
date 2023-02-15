@@ -21,7 +21,6 @@ const getContactById = async (id) => {
   }
   return result;
 };
-
 const removeContact = async (id) => {
   const contacts = await listContacts();
   const idx = contacts.findIndex((contact) => contact.id === id);
@@ -34,22 +33,30 @@ const removeContact = async (id) => {
 };
 
 const addContact = async (body) => {
-  const contacts = await listContacts();
-  const newContact = { ...body, id: uuidv4() };
-  contacts.push(newContact);
-  await updateContacts(contacts);
-  return newContact;
+  try {
+    const contacts = await listContacts();
+    const newContact = { ...body, id: uuidv4() };
+    contacts.push(newContact);
+    await updateContacts(contacts);
+    return newContact;
+  } catch (error) {
+    console.log("Somthing wrong");
+  }
 };
 
 const updateContactById = async (id, body) => {
-  const contacts = await listContacts();
-  const idx = contacts.findIndex((item) => item.id === id);
-  if (idx === -1) {
-    return null;
+  try {
+    const contacts = await listContacts();
+    const idx = contacts.findIndex((item) => item.id === id);
+    if (idx === -1) {
+      return null;
+    }
+    contacts[idx] = { ...body, id };
+    await updateContacts(contacts);
+    return contacts[idx];
+  } catch (error) {
+    console.log("Somthing wrong");
   }
-  contacts[idx] = { ...body, id };
-  await updateContacts(contacts);
-  return contacts[idx];
 };
 
 module.exports = {

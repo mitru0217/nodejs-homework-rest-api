@@ -86,25 +86,25 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const result = await contactsOperations.removeContact(id);
-    if (!result) {
-      throw createError(204, `Not found`);
-    }
+// router.delete("/:id", async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     const result = await contactsOperations.removeContact(id);
+//     if (!result) {
+//       throw createError(204, `Product with id=${id} not found`);
+//     }
 
-    res.json({
-      status: "success",
-      code: 200,
-      message: "contact deleted",
-      data: {
-        result,
-      },
-    });
-  } catch (error) {
-    next(error);
-  }
-});
+//     res.json({
+//       status: "success",
+//       code: 200,
+//       message: "product deleted",
+//       data: {
+//         result,
+//       },
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;

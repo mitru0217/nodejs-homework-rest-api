@@ -91,13 +91,13 @@ router.delete("/:id", async (req, res, next) => {
     const { id } = req.params;
     const result = await contactsOperations.removeContact(id);
     if (!result) {
-      throw createError(204, `Not found`);
+      throw createError(204, `Product with id=${id} not found`);
     }
 
     res.json({
       status: "success",
       code: 200,
-      message: "contact deleted",
+      message: "product deleted",
       data: {
         result,
       },

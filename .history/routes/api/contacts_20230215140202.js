@@ -1,13 +1,7 @@
 const express = require("express");
 const createError = require("http-errors");
-const Joi = require("joi");
-const contactsOperations = require("../../models/contacts");
 
-const contactSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-});
+const contactsOperations = require("../../models/contacts");
 
 const router = express.Router();
 
@@ -91,7 +85,7 @@ router.delete("/:id", async (req, res, next) => {
     const { id } = req.params;
     const result = await contactsOperations.removeContact(id);
     if (!result) {
-      throw createError(204, `Not found`);
+      throw createError(404, `Not found`);
     }
 
     res.json({
