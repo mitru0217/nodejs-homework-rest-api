@@ -1,9 +1,9 @@
 const express = require("express");
 const { validation, ctrlWrapper } = require("../../middlewares");
-const { contactSchema } = require("../../schemas");
+const { productSchema } = require("../../schemas");
 const { contacts: ctrl } = require("../../controllers");
 
-const validateMiddleware = validation(contactSchema);
+const validateMiddleware = validation(productSchema);
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get("/:id", ctrlWrapper(ctrl.getById));
 
 router.post("/", validateMiddleware, ctrlWrapper(ctrl.add));
 
-router.put("/:id", validation(contactSchema), ctrlWrapper(ctrl.updateById));
+router.put("/:id", validation(productSchema), ctrlWrapper(ctrl.updateById));
 
 router.delete("/:id", ctrlWrapper(ctrl.removeById));
 
