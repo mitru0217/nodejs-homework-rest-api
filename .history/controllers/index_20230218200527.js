@@ -1,5 +1,5 @@
 const contacts = require("./contacts");
-const auth = require("./auth");
+const auth = require("./register");
 module.exports = {
   contacts,
   auth,
