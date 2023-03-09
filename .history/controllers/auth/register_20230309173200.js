@@ -22,12 +22,12 @@ const register = async (req, res) => {
     verificationToken,
   });
 
-  const mailMessage = {
+  const mail = {
     to: email,
+    // from: "mitru0217@meta.ua",
     subject: "Подтверждение email",
-    html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${verificationToken}">Подтвердите email </a>`,
+    html: "<p>The </p>",
   };
-  await sendEmail(mailMessage);
 
   res.status(201).json({
     status: "succses",

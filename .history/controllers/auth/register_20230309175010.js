@@ -24,6 +24,7 @@ const register = async (req, res) => {
 
   const mailMessage = {
     to: email,
+    // from: "mitru0217@meta.ua",
     subject: "Подтверждение email",
     html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${verificationToken}">Подтвердите email </a>`,
   };
