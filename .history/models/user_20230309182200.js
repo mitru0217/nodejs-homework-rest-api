@@ -63,7 +63,6 @@ const verifyEmailSchema = Joi.object({
 const schemas = {
   registerSchema,
   loginSchema,
-  verifyEmailSchema,
 };
 
 module.exports = {

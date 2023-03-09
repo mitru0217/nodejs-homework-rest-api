@@ -1,9 +1,8 @@
 const { Conflict } = require("http-errors");
 const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
-const { v4: uuidv4 } = require("uuid");
-const { sendEmail } = require("../../helpers");
 const { User } = require("../../models");
+const { v4: uuidv4 } = require("uuid");
 
 const register = async (req, res) => {
   const { email, password, subscription } = req.body;
@@ -21,13 +20,6 @@ const register = async (req, res) => {
     avatarUrl,
     verificationToken,
   });
-
-  const mailMessage = {
-    to: email,
-    subject: "Подтверждение email",
-    html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${verificationToken}">Подтвердите email </a>`,
-  };
-  await sendEmail(mailMessage);
 
   res.status(201).json({
     status: "succses",

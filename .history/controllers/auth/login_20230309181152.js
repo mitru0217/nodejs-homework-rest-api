@@ -1,4 +1,4 @@
-const { RequestError } = require("../../helpers");
+// const createError = require("http-errors");
 const { Unauthorized } = require("http-errors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -11,12 +11,12 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   const passCompare = bcrypt.compareSync(password, user.password);
-  if (!user || !passCompare) {
-    throw new Unauthorized("Email is wrong or password is wrong");
+  if (!user || !user.verify || !passCompare) {
+    throw new Unauthorized(
+      "Email is wrong or not verify, or password is wrong"
+    );
   }
-  if (!user.verify) {
-    throw RequestError(400, "Email not verivy");
-  }
+
   const payload = {
     id: user._id,
   };

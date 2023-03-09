@@ -57,13 +57,10 @@ const loginSchema = Joi.object({
   email: Joi.string().required(),
   password: Joi.string().min(6).required(),
 });
-const verifyEmailSchema = Joi.object({
-  email: Joi.string().required(),
-});
+
 const schemas = {
   registerSchema,
   loginSchema,
-  verifyEmailSchema,
 };
 
 module.exports = {
