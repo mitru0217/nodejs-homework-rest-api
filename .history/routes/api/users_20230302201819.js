@@ -1,5 +1,4 @@
 const express = require("express");
-
 const { users: ctrl } = require("../../controllers");
 const { ctrlWrapper } = require("../../helpers");
 const { auth, upload } = require("../../middlewares");

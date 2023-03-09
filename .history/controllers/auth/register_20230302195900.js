@@ -10,12 +10,10 @@ const register = async (req, res) => {
     throw new Conflict(`User with ${email} already exist`);
   }
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  const avatarUrl = gravatar.url(email, { s: "250" }, true);
   const result = await User.create({
     email,
     password: hashPassword,
     subscription,
-    avatarUrl,
   });
 
   res.status(201).json({
